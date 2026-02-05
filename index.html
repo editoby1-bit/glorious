@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>GLORIOUS 🌸</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+  <main id="app">
+
+    <section id="screen-birthday" class="screen">
+      <h1>19 Glorious Pieces 🌸</h1>
+      <p class="soft">A few things that are true about you.</p>
+      <div id="birthdayMessage" class="soft big-message"></div>
+      <button class="primary" id="nextBirthdayBtn">Next</button>
+    </section>
+
+    <section id="screen-welcome" class="screen">
+      <h1>Hi, GLORIOUS.</h1>
+      <p class="soft">
+        You don’t have to be strong here.<br>
+        You are loved — even when you’re tired.
+      </p>
+      <button class="primary" id="startBtn">Begin gently</button>
+    </section>
+
+    <section id="screen-feeling" class="screen">
+      <h2>How are you feeling?</h2>
+      <div class="choices">
+        <button data-feel="okay">😌 Okay</button>
+        <button data-feel="tired">😐 Tired</button>
+        <button data-feel="stressed">😣 Stressed</button>
+        <button data-feel="overwhelmed">😔 Overwhelmed</button>
+      </div>
+    </section>
+
+    <section id="screen-response" class="screen">
+      <p id="responseText" class="soft"></p>
+      <div class="row">
+        <button id="stayBtn">Stay here</button>
+        <button class="primary" id="continueBtn">Move on</button>
+      </div>
+    </section>
+
+    <section id="screen-notes" class="screen">
+      <h2>Notes for you ❤️</h2>
+      <p id="noteText" class="soft"></p>
+      <div class="row">
+        <button id="anotherNoteBtn">Another note</button>
+        <button id="enoughBtn">That’s enough for now</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
