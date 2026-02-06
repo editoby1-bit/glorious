@@ -1,3 +1,6 @@
+/***********************
+  SCREEN HANDLING
+************************/
 const screens = {
   birthday: document.getElementById("screen-birthday"),
   welcome: document.getElementById("screen-welcome"),
@@ -6,146 +9,167 @@ const screens = {
   notes: document.getElementById("screen-notes")
 };
 
-function show(s) {
-  Object.values(screens).forEach(sc => sc.classList.remove("active"));
-  screens[s].classList.add("active");
+function show(screen) {
+  Object.values(screens).forEach(s => s.classList.remove("active"));
+  screens[screen].classList.add("active");
 }
 
-/* 🎂 LOCKED TO FEBRUARY 5 */
+/***********************
+  🎂 BIRTHDAY LOGIC
+  FEBRUARY 6
+************************/
 const today = new Date();
-const isBirthday = (today.getMonth() === 1 && today.getDate() === 5);
+const isBirthday = (today.getMonth() === 1 && today.getDate() === 6);
 
-/* 💖 19 GLORIOUS PIECES — FULL HEART VERSION */
+/***********************
+  🌸 19 GLORIOUS PIECES
+  SPIRITUAL + LOVE (NO CENSORING)
+************************/
 const birthdayMessages = [
 
 `When God wanted to look at Himself,
 He made you.
 
-You are His reflection —
-and that is real.`,
-
-`You are not an accident.
-You are intention.
-You are design.
-You are loved on purpose.`,
-
-`Heaven was careful
-when it made you.
-
-Nothing about you is random.`,
-
-`You are not fragile.
-You are layered, reinforced,
-and guarded by grace.`,
-
-`The strength you are looking for
-is already inside you.
-
-It has always been there.`,
-
-`You carry something rare:
-a heart that feels deeply
-and still chooses kindness.`,
-
-`You are bigger than this moment.
-You always have been.`,
-
-`Nothing is wrong with you for feeling tired.
-Even strong people rest.`,
-
-`Your mind is safe.
-Your heart is safe.
-You are safe in ways you don’t even see.`,
-
-`You are not behind in life.
-You are becoming exactly
-who you were meant to be.`,
-
-`Worry has no authority over you.
-The One in you is greater
-than anything around you.`,
-
-`You have a light
-that situations cannot dim
-and people cannot steal.`,
-
-`Even on days you feel small,
-Heaven still calls you chosen.`,
-
-`You are allowed to go slowly
-and still arrive exactly
-where you're meant to be.`,
-
-`You carry grace
-in places others carry fear.
-
-That is not normal.
-That is God in you.`,
-
-`You are deeply loved —
-not for what you do,
-not for what you achieve,
-but simply for who you are.`,
-
-`The world is better
-because you are in it.
-That is not poetry.
+You are His reflection.
+That is not metaphor.
 That is truth.`,
 
-`You are one of Heaven’s
-carefully placed answers
-to someone’s prayer.`,
+`You were not created casually.
+You were formed deliberately,
+with attention, intention,
+and love.`,
 
-`Today, I just want you to know…
+`Heaven did not rush
+when it made you.
 
-I’m grateful you were born.
-I’m grateful you exist.
-I’m grateful God made you.
+Every part of you
+was chosen.`,
+
+`You carry God’s fingerprint
+in your spirit.
+
+That is why your presence
+changes rooms.`,
+
+`You are not ordinary.
+You are familiar to Heaven
+and recognized by grace.`,
+
+`You have a depth
+that cannot be taught,
+and a light
+that cannot be copied.`,
+
+`God trusted the world with you.
+
+That alone should tell you
+how valuable you are.`,
+
+`You were born with authority,
+not fear.
+
+And nothing assigned against you
+has permission to stay.`,
+
+`There is oil on your life.
+Not noise.
+Not struggle.
+Oil.`,
+
+`You are guarded in ways
+you cannot see,
+and favored in ways
+you cannot explain.`,
+
+`Even when you are quiet,
+Heaven is loud about you.`,
+
+`Your life is not random.
+Your timing is not late.
+Your path is not confused.`,
+
+`You are walking in alignment,
+even when it doesn’t feel like it.`,
+
+`You are deeply loved.
+Not tolerated.
+Not managed.
+Loved.`,
+
+`Loving you is easy,
+because your soul
+is gentle and rare.`,
+
+`You are a gift.
+Not just today.
+Every day.`,
+
+`Some people are answers.
+You are one of them.`,
+
+`If the world knew
+how carefully you were made,
+it would treat you with more honor.`,
+
+`Today I just want you to know this:
+
+I thank God for you.
+I am grateful you were born.
+I am grateful you exist.
 
 Happy 19th Birthday, GLORIOUS 🌸
 — Edidiong`
 ];
 
 let birthdayIndex = 0;
+const messageBox = document.getElementById("birthdayMessage");
+const nextBtn = document.getElementById("nextBirthdayBtn");
 
 function showBirthdayMessage() {
-  document.getElementById("birthdayMessage").innerText =
-    birthdayMessages[birthdayIndex];
+  messageBox.innerText = birthdayMessages[birthdayIndex];
 }
 
-document.getElementById("nextBirthdayBtn").onclick = () => {
+/* NO FAST CYCLING — ONE WAY ONLY */
+nextBtn.onclick = () => {
   birthdayIndex++;
+
   if (birthdayIndex < birthdayMessages.length) {
     showBirthdayMessage();
   } else {
-    document.getElementById("nextBirthdayBtn").innerText = "Close";
+    nextBtn.disabled = true;
+    nextBtn.innerText = "💛";
   }
 };
 
-/* NORMAL APP PART (for after today) */
+/***********************
+  NORMAL APP (AFTER BIRTHDAY)
+  CLEAN + LIGHT
+************************/
 const responses = {
-  tired: "Nothing is wrong with you for feeling tired.\n\nEven strong people rest.",
-  stressed: "Take a breath.\n\nPeace is not something you chase — it is something you return to.",
-  overwhelmed: "Your mind is safe.\nYour heart is safe.\nYou are safe.",
-  okay: "You are doing better than you think."
+  okay: "You are steady. You are aligned. You are doing well.",
+  stressed: "Peace is already within you. Return to it.",
+  overwhelmed: "You are held. You are not alone. You are guided."
 };
 
 document.getElementById("startBtn").onclick = () => show("feeling");
 
-document.querySelectorAll("[data-feel]").forEach(btn =>
+document.querySelectorAll("[data-feel]").forEach(btn => {
   btn.onclick = () => {
     document.getElementById("responseText").innerText =
       responses[btn.dataset.feel];
     show("response");
-  }
-);
+  };
+});
 
 document.getElementById("continueBtn").onclick = () => show("notes");
 
+/***********************
+  NOTES (POST-BIRTHDAY)
+************************/
 const notes = [
-  "You are allowed to go slowly and still arrive exactly where you're meant to be.",
-  "You are doing better than you think.\n\n— Edidiong",
-  "Even strong people rest."
+  "You are walking in purpose, even when the steps feel quiet.",
+  "Grace speaks louder over your life than doubt ever could.",
+  "You are becoming exactly who you were designed to be.\n\n— Edidiong"
 ];
 
 function randomNote() {
@@ -154,11 +178,13 @@ function randomNote() {
 
 document.getElementById("noteText").innerText = randomNote();
 document.getElementById("anotherNoteBtn").onclick = () =>
-  (document.getElementById("noteText").innerText = randomNote());
+  document.getElementById("noteText").innerText = randomNote();
 
 document.getElementById("enoughBtn").onclick = () => show("welcome");
 
-/* LAUNCH MODE */
+/***********************
+  🚀 LAUNCH
+************************/
 if (isBirthday) {
   show("birthday");
   showBirthdayMessage();
